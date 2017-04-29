@@ -1,0 +1,53 @@
+#!/usr/bin/python
+
+from tempfile import mkstemp
+from shutil import move
+from os import remove, close
+
+from os.path import isdir, abspath
+from os import chdir, system
+from sys import argv
+
+openDialog = False
+location = False
+
+def openEclipse():
+    global location
+
+    optfile = '/opt/eclipse/configuration/.settings/org.eclipse.ui.ide.prefs'
+
+    for arg in argv[1:]:
+        if arg.startswith('-'):
+            argoptions(arg)
+        else:
+            print abspath(arg)
+            location = arg
+
+    setOption(optfile, 'SHOW_WORKSPACE_SELECTION_DIALOG', {False: 'false', True: 'true'}[openDialog])
+
+    if location:
+        if isdir(location):
+            setOption(optfile, 'RECENT_WORKSPACES', abspath(location))
+
+    system('/opt/eclipse/eclipse')
+
+def argoptions(arg):
+    global openDialog
+    if(arg == '-c'):
+        openDialog = True
+
+
+def setOption(optfile, option, value):
+    fh, abs_path = mkstemp()
+    with open(abs_path,'w') as new_file:
+        with open(optfile) as old_file:
+            for line in old_file:
+                a = line.split('=')
+                if a[0] == option:
+                    line = line.replace(a[1], str(value) + '\n')
+                new_file.write(line)
+    close(fh)
+    remove(optfile)
+    move(abs_path, optfile)
+
+openEclipse()
