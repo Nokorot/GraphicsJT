@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename type &apos;HttpClient&apos; to &apos;MyHttpClient&apos;&#x0A;- Original project: &apos;Database&apos;&#x0A;- Original element: &apos;HttpClient&apos;&#x0A;- Renamed element: &apos;MyHttpClient&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;HttpClient&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;{HttpClient.java[HttpClient" matchStrategy="1" name="MyHttpClient" qualified="false" references="true" similarDeclarations="false" stamp="1484436083604" textual="false" version="1.0"/>
-</session>
