@@ -1,9 +1,6 @@
 import engine.Application;
 import engine.Display;
-import engine.Entity;
 import engine.Screen;
-import engine.Sprite;
-import engine.Vector2f;
 
 public class Game extends Application {
 	
