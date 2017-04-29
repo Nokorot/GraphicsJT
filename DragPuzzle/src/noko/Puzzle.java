@@ -32,7 +32,8 @@ public class Puzzle extends Entity {
 	private Piece[] pieces;
 
 	public Puzzle() {
-		this.pos = new Vector2f();
+		super (new Vector2f());
+		
 		this.size = new Vector2f(11.5f, 11.5f);
 
 		genGrid();
@@ -110,7 +111,7 @@ public class Puzzle extends Entity {
 		List<Integer> l = new ArrayList<>();
 		Random rand = new Random();
 
-		Rect pieceS = new Rect(new Vector2f(), Vector2f.div(size, width).mult(.8f));
+		Rect pieceS = new Rect(Vector2f.div(size, width).mult(.8f));
 
 		Matrix3f mpos = new Matrix3f();
 		mpos.translate(.5f, .5f);

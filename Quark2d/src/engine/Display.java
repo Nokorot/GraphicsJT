@@ -102,6 +102,15 @@ public class Display extends Canvas	 {
 		frame.setVisible(true);
 	}
 	
+	public void setBackground(Color color){
+		super.setBackground(color);
+		background = color;
+	}
+	
+	public void setBackground(int r, int g, int b){
+		this.setBackground(new Color(r, g, b));
+	}
+	
 	public boolean isKeyDown(int key){
 		return 0 < (keys[key / 8] & ( 1 << (key % 8) )); 
 	}

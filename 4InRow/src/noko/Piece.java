@@ -24,6 +24,8 @@ public class Piece extends Entity {
 	private Matrix3f pos;
 
 	public Piece(int num, int x, int y, Matrix3f pos, Shape shape) {
+		super(new Vector2f());
+		
 		this.num = num;
 		this.x = x;
 		this.y = y;

@@ -42,7 +42,7 @@ public class Sprite {
 		} else
 			screen.getGraphics().drawImage(image, p.x-width/2, p.y-height/2, null);
 	}
-
+	
 	public static Sprite load(String file) {
 		BufferedImage image = null;
 		try {

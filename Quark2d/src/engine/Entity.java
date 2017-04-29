@@ -2,26 +2,40 @@ package engine;
 
 import java.awt.Color;
 
+import engine.shapes.Shape;
+
 public class Entity extends GameObject {
 
-	public Sprite sprite;
 	public Vector2f pos; // change to Transform
+	public Transform transform = new Transform();
 	
+	private Shape shape;
 	public Color color;
+	
+	public Sprite sprite;
 
-	protected Entity(){
+	public Entity(){
+		this.pos = new Vector2f();
 	}
-
-	public Entity(Sprite sprite, Vector2f pos) {
-		this.sprite = sprite;
+	
+	public Entity(Vector2f pos) {
 		this.pos = pos;
 	}
 
+	public void setShape(Shape shape) {
+		this.shape = shape;
+	}
+	
+	public void setColor(Color color){
+		this.color = color;
+	}
+	
 	public void Render(Screen screen) {
-		if (color != null)
-			screen.getGraphics().setColor(color);
 		if (sprite != null)
 			this.sprite.render(screen, pos);
+		else if (color != null){
+			shape.render(screen, color, transform);
+		}
 	}
 
 	public void Update(Display display) {

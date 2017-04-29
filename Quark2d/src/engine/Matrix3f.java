@@ -12,11 +12,6 @@ public class Matrix3f {
 			set(i, i, 1);
 	}
 	
-//	private Matrix3f(float[] data){
-//		for (int i = 0; i < this.data.length; i++)
-//			this.data[i] = data[i];
-//	}
-	
 	public static Matrix3f viewMatrix(float l, float r, float t, float b, int w, int h){
 		Matrix3f m = new Matrix3f();
 		m.set(0, 0, (r- l) / w);
@@ -71,6 +66,10 @@ public class Matrix3f {
 		
 		this.multiply(m);
 	}
+	
+	public void translate(Vector2f trans){
+		this.translate(trans.x, trans.y);
+	}
 
 	public void scale(Vector2f scale) {
 		Matrix3f m = new Matrix3f();
@@ -89,6 +88,19 @@ public class Matrix3f {
 		
 		this.multiply(m);
 	}
+	
+	public void rotate(float angle) {
+		Matrix3f m = new Matrix3f();
+
+		float cos = (float) Math.cos(Math.toRadians(angle));
+		float sin = (float) Math.sin(Math.toRadians(angle));
+		m.set(0, 0,  cos);
+		m.set(0, 1,  sin);
+		m.set(1, 0, -sin);
+		m.set(1, 1,  cos);
+		
+		this.multiply(m);
+	}
 
 	public void itranslate(Vector2f pos) {
 		translate(-pos.x, -pos.y);
@@ -100,6 +112,12 @@ public class Matrix3f {
 				get(0,1) + " " + get(1,1) + " " + get(2,1) + "\n\t" + 
 				get(0,2) + " " + get(1,2) + " " + get(2,2);
 	}
-	
-	
+
+	public void clear() {
+		for (int i = 0; i < this.data.length; i++)
+			this.data[i] = 0;
+		
+		for (int i = 0; i < 3; i++)
+			set(i, i, 1);
+	}
 }

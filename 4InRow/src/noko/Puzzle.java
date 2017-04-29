@@ -32,7 +32,7 @@ public class Puzzle extends Entity {
 	private Piece[] pieces;
 
 	public Puzzle() {
-		this.pos = new Vector2f();
+		super( new Vector2f() ); // Sorry, Jonas, you have to change this. 
 		this.size = new Vector2f(15.5f, 11.5f);
 		
 		grid = new int[width * height];
