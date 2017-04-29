@@ -1,2 +1,2 @@
 # GraphicsJT
-Some fun 2d graphics programing by Jonad and Tor-Haakon
+Some funn 2d graphics programing by Jonas and Tor-Haakon
