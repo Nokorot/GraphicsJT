@@ -1,0 +1,12 @@
+import javax.swing.JLabel;
+
+public class Display extends JLabel {
+
+	private int width, height;
+	private 
+	
+	public Display(int width, int height) {
+		
+	}
+	
+}

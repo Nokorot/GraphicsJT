@@ -1,0 +1,16 @@
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+public class Display extends JLabel {
+
+	private int width, height;
+	private JFrame frame;
+	
+	public Display(int width, int height) {
+		frame = new JFrame("Title");
+		frame.setDefaultCloseOperation(3);
+		frame.setVisible(true);
+		frame.add(this);
+	}
+	
+}

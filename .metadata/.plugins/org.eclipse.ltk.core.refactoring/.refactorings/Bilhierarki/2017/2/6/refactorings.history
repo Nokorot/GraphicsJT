@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;Bilhierarki/src/biler&apos; to &apos;1.in&apos;" description="Rename resource &apos;biler&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/biler" name="1.in" stamp="1486578589651" updateReferences="true"/>
+</session>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;NBEngine&apos; to &apos;Quark2d&apos;" description="Rename resource &apos;NBEngine&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/NBEngine" name="Quark2d" stamp="1487537391040" updateReferences="true"/>
+</session>

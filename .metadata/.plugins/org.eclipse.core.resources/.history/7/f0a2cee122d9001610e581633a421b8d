@@ -1,0 +1,10 @@
+
+public class Main {
+
+	private Display display;
+	
+	public static void main(String[] args) {
+		
+	}
+	
+}

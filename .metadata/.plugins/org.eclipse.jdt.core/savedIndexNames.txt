@@ -1,0 +1,7 @@
+INDEX VERSION 1.129+/home/nokorot/Workspace/Java/INF1010/.metadata/.plugins/org.eclipse.jdt.core
+4132700305.index
+149822021.index
+3566654017.index
+493892345.index
+1604528536.index
+4051644272.index

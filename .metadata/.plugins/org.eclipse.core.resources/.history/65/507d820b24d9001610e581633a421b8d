@@ -1,0 +1,45 @@
+
+public class Main {
+
+	private static Display display;
+	
+	private boolean running = false;
+	private Thread thread;
+	
+	public static void main(String[] args) {
+		display = new Display(800, 500);
+	}
+	
+	public void start(){
+		if (running) return;
+		running = true;
+		thread = new Thread(() -> run());
+		thread.start();
+	}
+	
+	public void stop(){
+		running = false;
+		try {
+			thread.join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void run(){
+		while (running) {
+			update();
+			render();
+		}
+	}
+	
+	private void update() {
+		// TODO Auto-generated method stub
+
+	}
+	
+	private void render(){
+		display.render();
+	}
+	
+}

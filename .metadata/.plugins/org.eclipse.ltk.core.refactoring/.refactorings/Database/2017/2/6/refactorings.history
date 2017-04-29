@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move package &apos;engine&apos; to &apos;DragPuzzle/src&apos;&#x0A;- Original project: &apos;Database&apos;&#x0A;- Destination element: &apos;DragPuzzle/src&apos;&#x0A;- Original element: &apos;Database/src/engine&apos;&#x0A;- Update references to refactored element" description="Move package" destination="=DragPuzzle/src" element1="/src&lt;engine" flags="589830" fragments="1" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.movePackages" stamp="1486497216045" version="1.0"/>
+</session>

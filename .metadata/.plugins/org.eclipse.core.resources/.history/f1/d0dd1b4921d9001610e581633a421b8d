@@ -1,0 +1,10 @@
+
+public class Display {
+
+	priv int width, height;
+	
+	public Display() {
+		// TODO Auto-generated constructor stub
+	}
+	
+}

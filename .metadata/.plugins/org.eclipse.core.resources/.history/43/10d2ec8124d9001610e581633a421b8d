@@ -1,0 +1,40 @@
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+public class Display extends JLabel {
+
+	private int width, height;
+	private JFrame frame;
+	
+	private BufferedImage image;
+	
+	private Color background = Color.RED;
+	
+	public Display(int width, int height) {
+		image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+		this.setSize(width, height);
+		this.setIcon(new ImageIcon(image));
+		
+		frame = new JFrame("Title");
+		frame.setDefaultCloseOperation(3);
+		frame.add(this);
+		frame.pack();
+		frame.setLocationRelativeTo(null);
+		frame.setResizable(false);
+		frame.setVisible(true);
+	}
+	
+	public void render(){
+		Graphics g = image.getGraphics();
+		g.setColor(background);
+		g.fillRect(0, 0, width, height);
+//		g.dispose();
+		this.setIcon(new ImageIcon(image));
+	}
+	
+}
