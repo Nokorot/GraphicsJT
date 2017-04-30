@@ -1,11 +1,17 @@
 import java.util.Random;
 
+import engine.Transform;
+import engine.Vector2f;
+import engine.shapes.Rect;
+
 public class Table {
 	
 	int width;
 	int height;
 	
-	private Piece[][] pieces;
+	static Vector2f size = new Vector2f(11.5f, 11.5f);
+	
+	Piece[][] pieces;
 	
 	public static Integer LEFT = new Integer(0);
 	public static Integer UP = new Integer(1);
@@ -20,7 +26,14 @@ public class Table {
 	}
 	
 	public void newPiece(int num, int x, int y) {
-		pieces[y][x] = new Piece(num, x, y);
+		Transform transform = new Transform();
+		transform.translate(new Vector2f(.5f, .5f).mult(size).div(width));
+		//transform.itranslate(getPosition());
+		transform.itranslate(Vector2f.div(size, 2));
+		transform.translate(new Vector2f(x, y).mult(size).div(width));
+		Rect rect = new Rect(Vector2f.div(size, width).mult(.8f));
+		pieces[y][x] = new Piece(num, x, y, rect);
+		pieces[y][x].setTransform(transform);
 	}
 	
 	public void new2048Piece() {
@@ -28,8 +41,11 @@ public class Table {
 		int x = random.nextInt(width);
 		int y = random.nextInt(height);
 		int num = (random.nextDouble() < 0.8) ? 2 : 4;
-		if (!isEmptyOn(x, y) ) {
+		if (isEmptyOn(x, y) ) {
 			newPiece(num, x, y);
+		} else {
+			new2048Piece();
+			return;
 		}
 	}
 	
@@ -45,6 +61,8 @@ public class Table {
 					Piece piece = pieces[y][x];
 					if (piece != null) {
 						newPieces[y][newX++] = piece;
+						piece.setX(newX);
+						System.out.println("movePieces left");
 					}
 				}
 			}
@@ -56,6 +74,8 @@ public class Table {
 					Piece piece = pieces[y][x];
 					if (piece != null) {
 						newPieces[newY++][x] = piece;
+						piece.setY(newY);
+						System.out.println("movePieces up");
 					}
 				}
 			}
@@ -67,6 +87,8 @@ public class Table {
 					Piece piece = pieces[y][x];
 					if (piece != null) {
 						newPieces[y][newX--] = piece;
+						piece.setX(newX);
+						System.out.println("movePieces right");
 					}
 				}
 			}
@@ -78,6 +100,8 @@ public class Table {
 					Piece piece = pieces[y][x];
 					if (piece != null) {
 						newPieces[newY--][x] = piece;
+						piece.setY(newY);
+						System.out.println("movePieces down");
 					}
 				}
 			}

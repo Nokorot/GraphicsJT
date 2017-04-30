@@ -1,5 +1,7 @@
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 
+import engine.Display;
 import engine.Entity;
 import engine.Screen;
 import engine.Vector2f;
@@ -19,8 +21,6 @@ public class Puzzle extends Entity {
 
 	private Line[] lines;
 
-	private Piece[] pieces;
-
 	public Puzzle() {
 		this.size = new Vector2f(11.5f, 11.5f);
 
@@ -28,36 +28,46 @@ public class Puzzle extends Entity {
 		//genPieces();
 	}
 
-/*
+
 	public void onKeypress(KeyEvent e) {
+		System.out.println("onKeypress");
+		table.new2048Piece();
 		switch (e.getKeyCode()) {
 		case KeyEvent.VK_UP:
 		case KeyEvent.VK_W:
-			tryToMove(getPiece(free.x, free.y + 1));
+			table.movePieces(Table.UP);
 			break;
 		case KeyEvent.VK_DOWN:
 		case KeyEvent.VK_S:
-			tryToMove(getPiece(free.x, free.y - 1));
+			table.movePieces(Table.DOWN);
 			break;
 		case KeyEvent.VK_LEFT:
 		case KeyEvent.VK_A:
-			tryToMove(getPiece(free.x - 1, free.y));
+			table.movePieces(Table.LEFT);
 			break;
 		case KeyEvent.VK_RIGHT:
 		case KeyEvent.VK_D:
-			tryToMove(getPiece(free.x + 1, free.y));
+			table.movePieces(Table.RIGHT);
 			break;
 		}
 	}
 	
-*/
 
 
+	public void Update(Display display) {
+	}
+	
 	public void Render(Screen screen) {
 		super.Render(screen);
 		screen.drawRect(background, getPosition(), size, true);
 		for (Line l : lines)
 			l.render(screen, grid);
+		for (Piece[] row : table.pieces) {
+			for (Piece piece : row) {
+				if (piece != null)
+					piece.Render(screen);
+			}
+		}
 //		for (Piece p : pieces)
 //			p.render(screen);
 	}
