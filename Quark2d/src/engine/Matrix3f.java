@@ -12,12 +12,22 @@ public class Matrix3f {
 			set(i, i, 1);
 	}
 	
+	public Matrix3f(float[] data){
+		if (data.length != 9)
+			throw new RuntimeException("Data length invalid!");
+		this.data = data;
+	}
+	
 	public static Matrix3f viewMatrix(float l, float r, float t, float b, int w, int h){
-		Matrix3f m = new Matrix3f();
-		m.set(0, 0, (r- l) / w);
-		m.set(1, 1, (b- t) / h);
-		m.set(2, 0, l);
-		m.set(2, 1, t);
+		Matrix3f m = new Matrix3f(new float[]{
+			(r-l)/w,    0   ,  l,
+				0  , (b-t)/h,  t,
+				0  ,    0   ,  1
+		});
+//		m.set(0, 0, (r- l) / w);
+//		m.set(1, 1, (b- t) / h);
+//		m.set(2, 0, l);
+//		m.set(2, 1, t);
 		return m;
 	}
 
@@ -42,15 +52,6 @@ public class Matrix3f {
 		data[x + y * 3] = value;
 	}
 	
-//	public static void main(String[] args) {
-//		Matrix3f view = viewMatrix(-1, 1, -1, 1, 100, 100);
-//		
-//		Vector2f pos = new Vector2f(50, 75);
-//		pos = Matrix3f.multiply(view, pos);
-//		
-//		System.out.println(pos);
-//	}
-
 	public static Vector2f multiply(Matrix3f mtx, Vector2f pos) {
 		float x = mtx.get(0, 0) * pos.x + mtx.get(1, 0) * pos.y + mtx.get(2, 0);
 		float y = mtx.get(0, 1) * pos.x + mtx.get(1, 1) * pos.y + mtx.get(2, 1);
@@ -90,15 +91,19 @@ public class Matrix3f {
 	}
 	
 	public void rotate(float angle) {
-		Matrix3f m = new Matrix3f();
-
 		float cos = (float) Math.cos(Math.toRadians(angle));
 		float sin = (float) Math.sin(Math.toRadians(angle));
-		m.set(0, 0,  cos);
-		m.set(0, 1,  sin);
-		m.set(1, 0, -sin);
-		m.set(1, 1,  cos);
-		
+		Matrix3f m = new Matrix3f(new float[]{
+			 cos, sin, 0,
+			-sin, cos, 0,
+			  0,   0,  1
+		});
+
+//		m.set(0, 0,  cos);
+//		m.set(0, 1,  sin);
+//		m.set(1, 0, -sin);
+//		m.set(1, 1,  cos);
+//		
 		this.multiply(m);
 	}
 
@@ -106,6 +111,14 @@ public class Matrix3f {
 		translate(-pos.x, -pos.y);
 	}
 
+	public Matrix3f transposed(){
+		return new Matrix3f(new float[]{
+			get(0,0), get(0,1), get(0,2), 
+			get(1,0), get(1,1), get(1,2), 
+			get(2,0), get(2,1), get(2,2)
+		});
+	}
+	
 	public String toString() {
 		return "Matrix3f : \n\t" + 
 				get(0,0) + " " + get(1,0) + " " + get(2,0) + "\n\t" + 

@@ -37,7 +37,7 @@ public class Piece extends Entity {
 
 	public void Render(Screen screen) {
 		super.Render(screen);
-		Vector2f pos = getPos();
+		Vector2f pos = getPosition();
 		shape.render(screen, pos);
 		Vector2i p = screen.asPixelCord(pos);
 		screen.getGraphics().setColor(Color.BLACK);
@@ -45,7 +45,7 @@ public class Piece extends Entity {
 		screen.getGraphics().drawString(""+num, (int) p.x, (int) p.y);
 	}
 
-	private Vector2f getPos(){
+	private Vector2f getPosition(){
 		return Matrix3f.multiply(pos, new Vector2f(x, y));
 	}
 	

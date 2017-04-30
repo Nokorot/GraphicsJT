@@ -67,7 +67,7 @@ public class Puzzle extends Entity {
 	
 	public boolean onMousepress(MouseEvent e, Vector2f pos) {
 		System.out.println(pos);
-		int i = (int) ((pos.x - this.pos.x + this.size.x / 2) / size.x * width);
+		int i = (int) ((pos.x - this.getPosition().x + this.size.x / 2) / size.x * width);
 		
 		System.out.println(i);
 		
@@ -81,14 +81,14 @@ public class Puzzle extends Entity {
 	
 	public void Render(Screen screen) {
 		super.Render(screen);
-		screen.drawRect(gridColor, this.pos, this.size, true);
+		screen.drawRect(gridColor, this.getPosition(), this.size, true);
 
 		float xw = this.size.x / width;
 		float yw = this.size.y / height;
 		
 		for(int i = 0; i < width * height; i++){
 			Color c = piecColors[grid[(i%width) + i/width*width]];
-			screen.drawOval(c, Vector2f.sub(this.pos, Vector2f.div(this.size, 2)).add(new Vector2f(xw * (i % width+.5f), yw * (i / width+.5f))), new Vector2f(xw, yw).mult(.9f));
+			screen.drawOval(c, Vector2f.sub(this.getPosition(), Vector2f.div(this.size, 2)).add(new Vector2f(xw * (i % width+.5f), yw * (i / width+.5f))), new Vector2f(xw, yw).mult(.9f));
 		}
 		
 	}

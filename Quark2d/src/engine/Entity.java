@@ -6,20 +6,22 @@ import engine.shapes.Shape;
 
 public class Entity extends GameObject {
 
-	public Vector2f pos; // change to Transform
 	public Transform transform = new Transform();
 	
-	private Shape shape;
+	protected Shape shape;
 	public Color color;
 	
 	public Sprite sprite;
 
 	public Entity(){
-		this.pos = new Vector2f();
+	}
+
+	public Entity(Vector2f pos) {
+		transform.setPos(pos);
 	}
 	
-	public Entity(Vector2f pos) {
-		this.pos = pos;
+	public Entity(Transform transform) {
+		this.transform = transform;
 	}
 
 	public void setShape(Shape shape) {
@@ -32,7 +34,7 @@ public class Entity extends GameObject {
 	
 	public void Render(Screen screen) {
 		if (sprite != null)
-			this.sprite.render(screen, pos);
+			this.sprite.render(screen, transform);
 		else if (color != null){
 			shape.render(screen, color, transform);
 		}
@@ -41,4 +43,12 @@ public class Entity extends GameObject {
 	public void Update(Display display) {
 	}
 
+	public void setTransform(Transform transform) {
+		this.transform = new Transform(transform);
+	}
+	
+	public Vector2f getPosition() {
+		return transform.getPosition();
+	}
+	
 }

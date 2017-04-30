@@ -8,8 +8,8 @@ import java.util.Random;
 
 import engine.Display;
 import engine.Entity;
-import engine.Matrix3f;
 import engine.Screen;
+import engine.Transform;
 import engine.Vector2f;
 import engine.Vector2i;
 import engine.shapes.Line;
@@ -100,7 +100,7 @@ public class Puzzle extends Entity {
 
 	public void Render(Screen screen) {
 		super.Render(screen);
-		screen.drawRect(background, pos, size, true);
+		screen.drawRect(background, getPosition(), size, true);
 		for (Line l : lines)
 			l.render(screen, grid);
 //		for (Piece p : pieces)
@@ -113,13 +113,11 @@ public class Puzzle extends Entity {
 
 		Rect pieceS = new Rect(Vector2f.div(size, width).mult(.8f));
 
-		Matrix3f mpos = new Matrix3f();
-		mpos.translate(.5f, .5f);
-		mpos.scale(size);
-		mpos.scale(1f / width);
-		mpos.itranslate(pos);
-		mpos.itranslate(Vector2f.div(size, 2)); 
-
+		Transform transform = new Transform();
+		transform.translate(new Vector2f(.5f, .5f).mult(size).div(width));
+		transform.itranslate(getPosition());
+		transform.itranslate(Vector2f.div(size, 2));
+		
 		pieces = new Piece[width * height -1];
 
 		for (int i = 0; i < pieces.length; i++)
@@ -130,11 +128,10 @@ public class Puzzle extends Entity {
 			for (int x = 0; x < width; x++) {
 				if (x == free.x && y == free.y)
 					continue;
-//				if (l.size() == 0)
-//					break;
-				System.out.println(l.size());
 				int i = rand.nextInt(l.size());
-				pieces[j] = new Piece(l.get(i), x, y, mpos, pieceS);
+				pieces[j] = new Piece(l.get(i), x, y, pieceS);
+				pieces[j].setTransform(transform);
+				pieces[j].transform.translate(new Vector2f(x, y).mult(size).div(width));
 				pieces[j].color = new Color(0xd19c57);
 				l.remove(i);
 				
