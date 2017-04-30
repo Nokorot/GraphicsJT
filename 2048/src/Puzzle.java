@@ -7,13 +7,14 @@ import engine.shapes.Line;
 
 public class Puzzle extends Entity {
 
-	private Color background = new Color(100, 200, 30);
+	private Color background = new Color(200, 150, 50);
 	private Color grid = Color.DARK_GRAY;
 
 	Vector2f size;
 
 	int width = 4;
 	int height = 4;
+	Table table = new Table(width, height);
 
 
 	private Line[] lines;
@@ -28,16 +29,6 @@ public class Puzzle extends Entity {
 		//genPieces();
 	}
 
-	private int abs(int x) {
-		return x < 0 ? -x : x;
-	}
-	
-	public Piece getPiece(int x, int y) {
-		for (Piece p : pieces)
-			if (p.x == x && p.y == y)
-				return p;
-		return null;
-	}
 /*
 	public void onKeypress(KeyEvent e) {
 		switch (e.getKeyCode()) {
