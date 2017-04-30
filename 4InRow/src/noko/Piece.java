@@ -24,6 +24,8 @@ public class Piece extends Entity {
 	private Matrix3f pos;
 
 	public Piece(int num, int x, int y, Matrix3f pos, Shape shape) {
+		super(new Vector2f());
+		
 		this.num = num;
 		this.x = x;
 		this.y = y;
@@ -37,7 +39,7 @@ public class Piece extends Entity {
 	}
 	
 	public boolean mousePress(Display display){
-		if(shape.contains(Vector2f.sub(display.mouse, getPos()))){
+		if(shape.contains(Vector2f.sub(display.mouse, getPosition()))){
 			return true;
 		}
 		return false;
@@ -45,7 +47,7 @@ public class Piece extends Entity {
 
 	public void Render(Screen screen) {
 		super.Render(screen);
-		Vector2f pos = getPos();
+		Vector2f pos = getPosition();
 		shape.render(screen, pos);
 		Vector2i p = screen.asPixelCord(pos);
 		screen.getGraphics().setColor(Color.BLACK);
@@ -53,7 +55,7 @@ public class Piece extends Entity {
 		screen.getGraphics().drawString(""+num, (int) p.x, (int) p.y);
 	}
 
-	private Vector2f getPos(){
+	public Vector2f getPosition(){
 		return Matrix3f.multiply(pos, new Vector2f(x, y));
 	}
 	

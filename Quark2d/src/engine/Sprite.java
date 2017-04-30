@@ -34,15 +34,15 @@ public class Sprite {
 		screen.getGraphics().drawImage(image, p.x, p.y, s.x, s.y, null);
 	}
 
-	public void render(Screen screen, Vector2f pos) {
-		Vector2i p = screen.asPixelCord(pos);
+	public void render(Screen screen, Transform transform) {
+		Vector2i p = screen.asPixelCord(transform.getPosition());
 		if (size != null) {
-			Vector2i s = screen.asPixelSize(size);
+			Vector2i s = screen.asPixelSize(size.mult(transform.getScale()));
 			screen.getGraphics().drawImage(image, p.x-s.x/2, p.y-s.y/2, s.x, s.y, null);
 		} else
 			screen.getGraphics().drawImage(image, p.x-width/2, p.y-height/2, null);
 	}
-
+	
 	public static Sprite load(String file) {
 		BufferedImage image = null;
 		try {

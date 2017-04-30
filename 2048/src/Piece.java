@@ -1,8 +1,11 @@
+import java.awt.Color;
 import java.awt.Font;
 
 import engine.Display;
 import engine.Entity;
 import engine.Screen;
+import engine.Vector2f;
+import engine.Vector2i;
 
 public class Piece extends Entity {
 
@@ -26,8 +29,14 @@ public class Piece extends Entity {
 
 	public void Render(Screen screen) {
 		super.Render(screen);
+
+		Vector2f pos = getPosition();
+		shape.render(screen, pos);
+		Vector2i p = screen.asPixelCord(pos);
+		screen.getGraphics().setColor(Color.BLACK);
+		screen.getGraphics().setFont(f);
+		screen.getGraphics().drawString(""+num, (int) p.x, (int) p.y);
 	}
-
-
+ 
 	
 }

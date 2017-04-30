@@ -22,7 +22,6 @@ public class Puzzle extends Entity {
 	private Piece[] pieces;
 
 	public Puzzle() {
-		this.pos = new Vector2f();
 		this.size = new Vector2f(11.5f, 11.5f);
 
 		genGrid();
@@ -56,7 +55,7 @@ public class Puzzle extends Entity {
 
 	public void Render(Screen screen) {
 		super.Render(screen);
-		screen.drawRect(background, pos, size, true);
+		screen.drawRect(background, getPosition(), size, true);
 		for (Line l : lines)
 			l.render(screen, grid);
 //		for (Piece p : pieces)

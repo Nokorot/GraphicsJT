@@ -5,13 +5,33 @@ import engine.Vector2f;
 public class Rect extends Polygon {
 	
 	public Rect(){
-		this(new Vector2f(), new Vector2f(1, 1));
+		this(1, 1);
 	}
 	
-	public Rect(Vector2f pos, Vector2f size) {
-		super( genPoints(pos, size) );
+	public Rect(float width, float height){
+		super( genPoints(width, height) );
+	}
+	
+	public Rect(Vector2f size){
+		super ( genPoints(size.x, size.y) );
+	}
+	
+	public Rect(Vector2f size, Vector2f offset) {
+		super( genPoints(offset, size) );
 	}
 
+	private static Vector2f[] genPoints(float width, float height){
+		float wa = width / 2;
+		float ha = height / 2;
+		
+		return new Vector2f[]{
+				new Vector2f(-wa, -ha),
+				new Vector2f(wa, -ha),
+				new Vector2f(wa, ha),
+				new Vector2f(-wa, ha)
+		};
+	}
+	
 	private static Vector2f[] genPoints(Vector2f pos, Vector2f size) {
 		pos = Vector2f.sub(pos, Vector2f.div(size, 2));
 		
