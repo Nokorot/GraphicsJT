@@ -23,9 +23,19 @@ public class Transform {
 		updated = false;
 	}
 	
+	public void setPos(float x, float y) {
+		this.pos.x = x;
+		this.pos.y = y;
+	}
+	
 	public void setScale(Vector2f scale) {
 		this.scale = scale;
 		updated = false;
+	}
+	
+	public void setScale(float x, float y){
+		this.scale.x = x;
+		this.scale.y = y;
 	}
 	
 	public void setRotate(float rotate) {

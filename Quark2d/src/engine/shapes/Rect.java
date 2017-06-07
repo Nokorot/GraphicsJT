@@ -4,22 +4,36 @@ import engine.Vector2f;
 
 public class Rect extends Polygon {
 	
+	private float width, height;
+	
 	public Rect(){
 		this(1, 1);
 	}
 	
 	public Rect(float width, float height){
 		super( genPoints(width, height) );
+		this.width = width;
+		this.height = height;
 	}
 	
 	public Rect(Vector2f size){
 		super ( genPoints(size.x, size.y) );
+		this.width = size.x;
+		this.height = size.y;
 	}
 	
 	public Rect(Vector2f size, Vector2f offset) {
 		super( genPoints(offset, size) );
 	}
+	
+	public float getWidth() {
+		return width;
+	}
 
+	public float getHeight() {
+		return height;
+	}
+	
 	private static Vector2f[] genPoints(float width, float height){
 		float wa = width / 2;
 		float ha = height / 2;

@@ -26,14 +26,10 @@ public class Table {
 	}
 	
 	public void newPiece(int num, int x, int y) {
-		Transform transform = new Transform();
-		transform.translate(new Vector2f(.5f, .5f).mult(size).div(width));
-		//transform.itranslate(getPosition());
-		transform.itranslate(Vector2f.div(size, 2));
-		transform.translate(new Vector2f(x, y).mult(size).div(width));
-		Rect rect = new Rect(Vector2f.div(size, width).mult(.8f));
-		pieces[y][x] = new Piece(num, x, y, rect);
-		pieces[y][x].setTransform(transform);
+		Rect rect = new Rect(Vector2f.div(size, width));
+		
+		pieces[y][x] = new Piece(this, num, x, y, rect.getWidth(), rect.getHeight());
+//		pieces[y][x].setTransform(transform);
 	}
 	
 	public void new2048Piece() {
