@@ -92,6 +92,14 @@ public class Vector2f {
 		return new Vector2f(a).div(b);
 	}
 
+	public static Vector2f mult(Vector2f a, Vector2f b) {
+		return new Vector2f(a).mult(b);
+	}
+
+	public static Vector2f mult(Vector2f a, float f) {
+		return new Vector2f(a).mult(f);
+	}
+
 	public static Vector2f div(Vector2f vec, float f) {
 		return new Vector2f(vec).div(f);
 	}

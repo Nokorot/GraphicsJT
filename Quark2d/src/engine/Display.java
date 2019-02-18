@@ -132,6 +132,8 @@ public class Display extends Canvas	 {
 	}
 	
 	private void run(){
+		long dt;
+		long time = System.nanoTime(), newtime;
 		while (running) {
 			update();
 			render();
@@ -140,6 +142,10 @@ public class Display extends Canvas	 {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+			newtime = System.nanoTime();
+			dt = newtime - time;
+			time = newtime;
+			System.out.println(dt);
 		}
 	}
 	
@@ -170,6 +176,7 @@ public class Display extends Canvas	 {
 		parent.render(screen);
 		sceenbounds = screen.render(g, frame.getContentPane().getBounds());
 		screen.disose();
+		
 //		g.setFont(new Font("Verdana", 2, 50));
 //		g.setColor(Color.yellow);
 //		g.drawString(fps + "fps", 20, 50);
